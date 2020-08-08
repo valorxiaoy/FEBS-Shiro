@@ -9,7 +9,7 @@
       remark,guardian_id,area_code,face_reco,entrust_the_way)
        values (
         #{region},#{classify},#{name},#{gender}, #{age},#{phone},#{site},#{diagnosis}, #{affiliatedHospital},#{createUid},
-        #{createTime},#{updateTime},#{updateUid},#{remark},#{guardianId},#{areaCode},#{faceReco},#{entrustTheWy})
+        #{createTime},#{updateTime},#{updateUid},#{remark},#{guardianId},#{areaCode},#{faceReco},#{entrustTheWay})
     </insert>
 
     <update id="updatePhoneByKey">

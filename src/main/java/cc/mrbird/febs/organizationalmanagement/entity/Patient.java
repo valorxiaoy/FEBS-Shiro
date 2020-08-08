@@ -18,7 +18,7 @@ public class Patient implements Serializable {
    private int      guardianId;
    private String   areaCode;
    private String   faceReco;
-   private String   entrustTheWy;
+   private String   entrustTheWay;
 
    private String   site;
    private String   diagnosis;
@@ -54,11 +54,11 @@ public class Patient implements Serializable {
     }
 
     public String getEntrustTheWy() {
-        return entrustTheWy;
+        return entrustTheWay;
     }
 
     public void setEntrustTheWy(String entrustTheWy) {
-        this.entrustTheWy = entrustTheWy;
+        this.entrustTheWay = entrustTheWy;
     }
 
     private String entrust_the_way;

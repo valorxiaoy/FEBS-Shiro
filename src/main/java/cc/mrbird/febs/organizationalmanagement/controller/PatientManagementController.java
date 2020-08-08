@@ -58,7 +58,7 @@ public class PatientManagementController {
         }
     }
 
-    @ApiOperation("修改")
+    @ApiOperation("根据手机号码修改")
     @RequestMapping(value = "/updatePhoneByKey",method = RequestMethod.POST)
     public Result updatePhoneByKey(@RequestBody Patient patient){
         try {
