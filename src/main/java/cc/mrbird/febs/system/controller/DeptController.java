@@ -10,6 +10,8 @@ import cc.mrbird.febs.system.entity.Dept;
 import cc.mrbird.febs.system.service.IDeptService;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.wuwenze.poi.ExcelKit;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -23,6 +25,7 @@ import java.util.List;
 /**
  * @author MrBird
  */
+@ApiModel("部门设置")
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -44,6 +47,9 @@ public class DeptController {
         return new FebsResponse().success().data(depts);
     }
 
+
+
+    @ApiOperation("新增部门")
     @PostMapping
     @RequiresPermissions("dept:add")
     @ControllerEndpoint(operation = "新增部门", exceptionMessage = "新增部门失败")
@@ -52,6 +58,7 @@ public class DeptController {
         return new FebsResponse().success();
     }
 
+    @ApiOperation("删除部门")
     @GetMapping("delete/{deptIds}")
     @RequiresPermissions("dept:delete")
     @ControllerEndpoint(operation = "删除部门", exceptionMessage = "删除部门失败")
@@ -61,6 +68,7 @@ public class DeptController {
         return new FebsResponse().success();
     }
 
+    @ApiOperation("修改部门")
     @PostMapping("update")
     @RequiresPermissions("dept:update")
     @ControllerEndpoint(operation = "修改部门", exceptionMessage = "修改部门失败")
@@ -69,6 +77,7 @@ public class DeptController {
         return new FebsResponse().success();
     }
 
+    @ApiOperation("导出部门")
     @GetMapping("excel")
     @RequiresPermissions("dept:export")
     @ControllerEndpoint(exceptionMessage = "导出Excel失败")
@@ -76,4 +85,6 @@ public class DeptController {
         List<Dept> depts = this.deptService.findDepts(dept, request);
         ExcelKit.$Export(Dept.class, response).downXlsx(depts, false);
     }
+
+
 }

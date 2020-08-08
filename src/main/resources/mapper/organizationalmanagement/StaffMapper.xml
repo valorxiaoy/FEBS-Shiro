@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.organizationalmanagement.mapper.StaffMapper">
+
+    <!-- 添加新职工-->
+    <insert id="addStaff" parameterType="cc.mrbird.febs.organizationalmanagement.entity.Staff">
+    INSERT INTO t_staff_table (
+      region,staff_name,gender,qualification,post,phone,site,certification_status,subsidiary_organ,identity_card_front,
+    identity_card_contrary,job_status_front,job_status_contrary,create_uid, create_time,update_uid,update_time,remark,age,birthday)
+       VALUES (#{region},#{staffName},#{gender},#{qualification},#{post},#{phone},#{site},#{certificationStatus},#{subsidiaryOrgan},
+    #{identityCardFront},#{identityCardContrary},#{jobStatusFront},#{jobStatusContrary},#{createUid},#{createTime},
+    #{updateUid},#{updateTime},#{remark},#{age},#{birthday})
+    </insert>
+    <!-- 根据身份进行修改 -->
+    <update id="updateByKey" parameterType="cc.mrbird.febs.organizationalmanagement.entity.Staff">
+        update t_staff_table
+        <set>
+            <if test="region != null">
+                region =#{region},
+            </if>
+            <if test="staffName !=null">
+                staff_name  =#{staffName},
+            </if>
+            <if test="gender !=null">
+                gender =#{gender},
+            </if>
+
+            <if test="qualification != null">
+                qualification =#{qualification},
+            </if>
+            <if test="post != null">
+               post  =#{post},
+            </if>
+            <if test="phone != null">
+                phone  =#{phone},
+            </if>
+            <if test="site != null">
+                site =#{site},
+            </if>
+            <if test="certificationStatus!=null">
+                certification_status =#{certificationStatus},
+            </if>
+            <if test="subsidiaryOrgan!=null">
+                subsidiary_organ=#{subsidiaryOrgan},
+            </if>
+            <if test="identityCardFront!=null">
+                identity_card_front=#{identityCardFront},
+            </if>
+            <if test="identityCardContrary!=null">
+                identity_card_contrary=#{identityCardContrary},
+            </if>
+            <if test="jobStatusFront!=null">
+                job_status_front=#{jobStatusFront},
+            </if>
+            <if test="jobStatusContrary!=null">
+                job_status_contrary=#{jobStatusContrary},
+            </if>
+            <if test="createUid!=null">
+                create_uid=#{createUid},
+            </if>
+            <if test="createTime!=null">
+                create_time= #{createTime},
+            </if>
+           <if test="updateUid!=null">
+               update_uid=#{updateUid},
+           </if>
+            <if test="updateTime!=null">
+                update_time= #{updateTime},
+            </if>
+           <if test="remark!=null">
+               remark=#{remark},
+           </if>
+           <if test="age != null">
+               age = #{age},
+           </if>
+           <if test="birthday != null">
+               birthday =#{birthday}
+           </if>
+        </set>
+        WHERE identity_card_front=#{identityCardFront}
+    </update>
+
+    <!-- 根据身份进行删除  -->
+    <delete id="deleteStaffByKey" parameterType="java.lang.String">
+        delete from t_staff_table WHERE identity_card_front =#{identityCardFront}
+    </delete>
+
+    <!-- 根据身份进行查询 -->
+    <select id="selectStaffByKey" resultType="cc.mrbird.febs.organizationalmanagement.entity.Staff" parameterType="java.lang.String">
+        select identity_card_front from t_staff_table WHERE identity_card_front =#{identityCardFront}
+    </select>
+    <!-- 查询所有的职工 -->
+    <select id="findAll" resultType="cc.mrbird.febs.organizationalmanagement.entity.Patient">
+        select * from t_staff_table
+        <if test="value != null and value.length > 0">
+            where  identity_card_front =#{value}
+        </if>
+    </select>
+
+
+</mapper>

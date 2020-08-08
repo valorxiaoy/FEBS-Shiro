@@ -22,10 +22,18 @@ mybatis-plus:
   mapper-locations: classpath:mapper/*/*.xml
   configuration:
     jdbc-type-for-null: null
+    map-underscore-to-camel-case: true
   global-config:
     banner: false
     db-config:
       select-strategy: not_empty
+
+mybatis:
+  type-aliases-package: cc.mrbird.febs.*.entity
+  mapper-locations: classpath:mapper/*/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
 
 logging:
   level:

@@ -1,6 +1,7 @@
 package cc.mrbird.febs.system.service;
 
 import cc.mrbird.febs.common.entity.DeptTree;
+import cc.mrbird.febs.common.entity.FebsResponse;
 import cc.mrbird.febs.common.entity.QueryRequest;
 import cc.mrbird.febs.system.entity.Dept;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -56,4 +57,5 @@ public interface IDeptService extends IService<Dept> {
      * @param deptIds 部门 ID集合
      */
     void deleteDepts(String[] deptIds);
+
 }

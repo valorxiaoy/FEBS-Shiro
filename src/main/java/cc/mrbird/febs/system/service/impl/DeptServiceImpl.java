@@ -34,6 +34,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements ID
 
     private final IUserDataPermissionService userDataPermissionService;
 
+
     @Override
     public List<DeptTree<Dept>> findDepts() {
         List<Dept> depts = this.baseMapper.selectList(new QueryWrapper<>());
@@ -89,6 +90,8 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements ID
     public void deleteDepts(String[] deptIds) {
         this.delete(Arrays.asList(deptIds));
     }
+
+
 
     private List<DeptTree<Dept>> convertDepts(List<Dept> depts) {
         List<DeptTree<Dept>> trees = new ArrayList<>();

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.systemmanagement.mapper.RoleManagementMapper">
+    <insert id="addRole" parameterType="cc.mrbird.febs.systemmanagement.entity.RoleT">
+        INSERT INTO t_role (
+        id,role_name,create_uid,create_time,update_uid,update_time,remark,role_id,name,gender,phone,site,qualification,username
+        )
+        VALUES (#{id},#{roleName},#{createUid},#{createTime},#{updateUid},#{updateTime},#{remark},#{roleId},#{name},
+        #{gender},#{phone},#{site},#{qualification},#{username})
+
+    </insert>
+    <update id="updateByKey" parameterType="cc.mrbird.febs.systemmanagement.entity.RoleT">
+        update t_role
+        <set>
+
+            <if test="roleName != null">
+                role_name  =#{roleName},
+            </if>
+            <if test=" createUid != null">
+                create_uid =#{createUid},
+            </if>
+            <if test="createTime != null">
+                create_time =#{createTime},
+            </if>
+            <if test="updateUid !=null">
+                update_uid =#{updateUid},
+            </if>
+            <if test="updateTime !=null">
+                update_time =#{updateTime},
+            </if>
+            <if test="remark != null">
+                remark =#{remark},
+            </if>
+
+            <if test="name != null">
+                name =#{name},
+            </if>
+            <if test="gender !=null">
+                gender =#{gender},
+            </if>
+            <if test="phone !=null">
+                phone =#{phone},
+            </if>
+            <if test="site !=null">
+                site =#{site},
+            </if>
+            <if test="qualification!=null">
+                qualification =#{qualification},
+            </if>
+            <if test="username!=null">
+                username =#{username}
+            </if>
+        </set>
+             WHERE role_id =#{roleId}
+    </update>
+    <update id="updateQualification">
+        update  t_role
+        set status = 1 where role_id =#{roleId}
+    </update>
+
+
+    <delete id="deleteByKey" parameterType="java.lang.Integer">
+        delete from  t_role where role_id =#{roleId}
+    </delete>
+
+
+    <select id="getRoleByKey" parameterType="int" resultType="cc.mrbird.febs.systemmanagement.entity.RoleT">
+            select  * from  t_role where role_id =#{roleId}
+    </select>
+
+    <select id="findAll" resultType="cc.mrbird.febs.systemmanagement.entity.RoleT">
+            select * from  t_role
+    </select>
+
+
+</mapper>
