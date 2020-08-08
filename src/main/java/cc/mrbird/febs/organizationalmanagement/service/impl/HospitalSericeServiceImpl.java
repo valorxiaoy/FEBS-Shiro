@@ -46,5 +46,10 @@ public class HospitalSericeServiceImpl implements HospitalSericeService {
         return new PageResult(hos.getTotal(),hos.getResult());
     }
 
+    @Override
+    public void updateState(String sericeSerial) {
+        sericeMapper.updateState(sericeSerial);
+    }
+
 
 }

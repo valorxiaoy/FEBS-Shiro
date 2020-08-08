@@ -50,6 +50,10 @@
 
     </update>
 
+    <update id="updateState" parameterType="java.lang.String">
+        UPDATE t_hospital_serice set state  = 1 where serice_serial WHERE =#{sericeSerial}
+    </update>
+
 
     <delete id="deleteSerialByKey" parameterType="java.lang.String">
         delete from  t_hospital_serice where serice_serial =#{sericeSerial}

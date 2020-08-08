@@ -81,4 +81,17 @@ public class HospitalSericeManagementController {
                 ,queryPageBean.getQueryString());
         return all;
     }
+
+    @ApiOperation("根据项目编号修改项目状态")
+    @GetMapping("/updatestate/{sericeSerial}")
+    public Result updateState(@PathVariable("sericeSerial") String sericeSerial){
+        try {
+            sericeService.updateState(sericeSerial);
+
+            return new Result(true,"修改成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Result(false,"修改失败");
+        }
+    }
 }

@@ -37,4 +37,10 @@ public interface HospitalSericeMapper {
      * @return
      */
     Page<HospitalSerice> findAll(String queryString);
+
+    /**
+     * 根据项目编号修改项目状态
+     * @param sericeSerial
+     */
+    void updateState(String sericeSerial);
 }
