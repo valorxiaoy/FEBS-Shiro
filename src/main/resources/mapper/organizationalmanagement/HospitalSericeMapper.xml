@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.organizationalmanagement.mapper.HospitalSericeMapper">
+
+    <insert id="add" parameterType="cc.mrbird.febs.organizationalmanagement.entity.HospitalSerice">
+        INSERT INTO t_hospital_serice(
+          parenting_way,parenting_name,serice_serial,cost,state,create_uid,create_time,update_uid,update_time,remark)
+          values (
+        #{parentingWay},#{parentingName},#{sericeSerial},#{cost},#{state},#{createUid},#{createTime},#{updateUid},#{updateTime},#{remark})
+    </insert>
+
+
+    <update id="updateSericeByKey"
+            parameterType="cc.mrbird.febs.organizationalmanagement.entity.HospitalSerice">
+        update t_hospital_serice
+        <set>
+            <if test="parentingWay != null">
+                parenting_way =#{parentingWay},
+
+            </if>
+            <if test="parentingName != null">
+                parenting_name =#{parentingName},
+            </if>
+            <if test="sericeSerial != null">
+                serice_serial =#{sericeSerial},
+            </if>
+            <if test="cost!=null">
+                cost =#{cost},
+            </if>
+            <if test="state !=null">
+                state =#{state},
+            </if>
+            <if test="createUid != null ">
+                create_uid =#{createUid},
+            </if>
+            <if test="createTime != null">
+                create_time  =#{createTime},
+            </if>
+            <if test="updateUid != null">
+                update_uid =#{updateUid},
+            </if>
+            <if test="updateTime != null">
+                update_time =#{updateTime},
+            </if>
+            <if test="remark != null">
+                remark =#{remark}
+            </if>
+                WHERE  serice_serial =#{sericeSerial}
+        </set>
+
+    </update>
+
+
+    <delete id="deleteSerialByKey" parameterType="java.lang.String">
+        delete from  t_hospital_serice where serice_serial =#{sericeSerial}
+    </delete>
+
+
+    <select id="selectSeriaByKey" resultType="cc.mrbird.febs.organizationalmanagement.entity.HospitalSerice"
+            parameterType="java.lang.String">
+        select serice_serial from t_hospital_serice where serice_serial =#{sericeSerial}
+    </select>
+
+    <select id="findAll" resultType="cc.mrbird.febs.organizationalmanagement.entity.HospitalSerice"
+            parameterType="java.lang.String">
+        select * from t_hospital_serice
+        <if test="value != null and value.length > 0 ">
+            where  parenting_way =#{parentingWay}
+        </if>
+    </select>
+
+</mapper>
