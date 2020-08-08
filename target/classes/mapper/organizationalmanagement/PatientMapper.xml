@@ -9,7 +9,7 @@
       remark,guardian_id,area_code,face_reco,entrust_the_way)
        values (
         #{region},#{classify},#{name},#{gender}, #{age},#{phone},#{site},#{diagnosis}, #{affiliatedHospital},#{createUid},
-        #{createTime},#{updateTime},#{updateUid},#{remark},#{guardianId},#{areaCode},#{faceReco},#{entrustTheWy})
+        #{createTime},#{updateTime},#{updateUid},#{remark},#{guardianId},#{areaCode},#{faceReco},#{entrustTheWay})
     </insert>
 
     <update id="updatePhoneByKey">
@@ -29,48 +29,48 @@
                 name =#{name},
             </if>
             <if test="age != null">
-               age  =#{age},
+                age =#{age},
             </if>
             <if test="phone != null">
-                phone  =#{phone},
+                phone =#{phone},
             </if>
-            <if test="site != null">
+            <if test="site!= null">
                 site =#{site},
             </if>
             <if test="diagnosis!=null">
                 diagnosis =#{diagnosis},
             </if>
             <if test="affiliatedHospital!=null">
-                affiliated_hospital=#{affiliatedHospital},
+                affiliated_hospital =#{affiliatedHospital},
             </if>
 
             <if test="guardianId!=null">
                 guardian_id =#{guardianId},
             </if>
             <if test="areaCode!=null">
-                area_code=#{areaCode},
+                area_code =#{areaCode},
             </if>
             <if test="faceReco!=null">
-                face_reco=#faceReco},
+                face_reco =#faceReco},
             </if>
             <if test="entrustTheWay!=null">
-                entrust_the_way=#{entrustTheWay},
+                entrust_the_way =#{entrustTheWay},
             </if>
 
             <if test="createUid!=null">
-                create_uid=#{createUid},
+                create_uid =#{createUid},
             </if>
             <if test="createTime!=null">
-                create_time= #{createTime},
+                create_time =#{createTime},
             </if>
             <if test="updateUid!=null">
-                update_uid=#{updateUid},
+                update_uid =#{updateUid},
             </if>
             <if test="updateTime!=null">
-                update_time= #{updateTime},
+                update_time =#{updateTime},
             </if>
             <if test="remark!=null">
-                remark=#{remark}
+                remark =#{remark}
             </if>
         </set>
         WHERE phone =#{phone}
