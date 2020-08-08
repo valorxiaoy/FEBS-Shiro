@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.organizationalmanagement.mapper.PatientMapper">
+    <insert id="add" parameterType="cc.mrbird.febs.organizationalmanagement.entity.Patient">
+
+
+          INSERT INTO t_patient (
+      region,classify,name,gender,age,phone,site,diagnosis,affiliated_hospital,create_uid,create_time,update_time,update_uid,
+      remark,guardian_id,area_code,face_reco,entrust_the_way)
+       values (
+        #{region},#{classify},#{name},#{gender}, #{age},#{phone},#{site},#{diagnosis}, #{affiliatedHospital},#{createUid},
+        #{createTime},#{updateTime},#{updateUid},#{remark},#{guardianId},#{areaCode},#{faceReco},#{entrustTheWy})
+    </insert>
+
+    <update id="updatePhoneByKey">
+        update t_patient
+        <set>
+            <if test="region != null">
+                region =#{region},
+            </if>
+            <if test="classify !=null">
+                classify  =#{classify},
+            </if>
+            <if test="gender !=null">
+                gender =#{gender},
+            </if>
+
+            <if test="name != null">
+                name =#{name},
+            </if>
+            <if test="age != null">
+               age  =#{age},
+            </if>
+            <if test="phone != null">
+                phone  =#{phone},
+            </if>
+            <if test="site != null">
+                site =#{site},
+            </if>
+            <if test="diagnosis!=null">
+                diagnosis =#{diagnosis},
+            </if>
+            <if test="affiliatedHospital!=null">
+                affiliated_hospital=#{affiliatedHospital},
+            </if>
+
+            <if test="guardianId!=null">
+                guardian_id =#{guardianId},
+            </if>
+            <if test="areaCode!=null">
+                area_code=#{areaCode},
+            </if>
+            <if test="faceReco!=null">
+                face_reco=#faceReco},
+            </if>
+            <if test="entrustTheWay!=null">
+                entrust_the_way=#{entrustTheWay},
+            </if>
+
+            <if test="createUid!=null">
+                create_uid=#{createUid},
+            </if>
+            <if test="createTime!=null">
+                create_time= #{createTime},
+            </if>
+            <if test="updateUid!=null">
+                update_uid=#{updateUid},
+            </if>
+            <if test="updateTime!=null">
+                update_time= #{updateTime},
+            </if>
+            <if test="remark!=null">
+                remark=#{remark}
+            </if>
+        </set>
+        WHERE phone =#{phone}
+    </update>
+    <delete id="deletePhoneByKey">
+        delete from t_patient WHERE phone=#{phone}
+    </delete>
+
+
+    <!-- 根据手机号患者信息 -->
+    <select id="selectPhoneByKey" resultType="cc.mrbird.febs.organizationalmanagement.entity.Patient">
+        select name FROM t_patient WHERE phone =#{phone}
+    </select>
+
+    <select id="findAll" resultType="cc.mrbird.febs.organizationalmanagement.entity.Patient">
+        select * from t_staff_table
+        <if test="value != null and value.length > 0">
+            where  phone =#{value}
+        </if>
+    </select>
+
+</mapper>

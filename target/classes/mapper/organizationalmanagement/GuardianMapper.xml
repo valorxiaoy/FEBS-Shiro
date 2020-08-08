@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.organizationalmanagement.mapper.GuardianMapper">
+    <insert id="add">
+        INSERT INTO t_guardian(
+            region,name,gender,phone,site,create_uid,create_time,update_uid,update_time,remark,face_recognition)
+            values (#{region},#{name}, #{gender},#{phone},#{site},#{createUid},#{createTime},#{updateUid},#{updateTime},
+             #{remark},#{faceRecognition})
+    </insert>
+
+    <update id="updatePhoneByKey">
+        update t_guardian
+        <set>
+            <if test="region!=null">
+                region =#{region},
+            </if>
+            <if test="name!=null">
+                name =#{name},
+            </if>
+            <if test="gender!=null">
+                gender=#{gender},
+            </if>
+            <if test="phone!=null">
+                phone =#{phone},
+            </if>
+            <if test="site!=null">
+                site=#{site},
+            </if>
+            <if test="createUid!=null">
+                create_uid =#{createUid},
+            </if>
+            <if test="createTime!=null">
+                create_time=#{createTime},
+            </if>
+            <if test="updateUid!=null">
+                update_uid=#{updateUid},
+            </if>
+            <if test="updateTime!=null">
+                update_time =#{updateTime},
+            </if>
+           <if test="remark!=null">
+                remark=#{remark},
+           </if>
+           <if test="faceRecognition!=null">
+               face_recognition =#{faceRecognition}
+           </if>
+        </set>
+            WHERE phone =#{phone}
+    </update>
+
+    <delete id="deletePhoneByKey">
+        delete from t_guardian WHERE phone=#{phone}
+    </delete>
+
+    <select id="selectPhoneByKey" resultType="cc.mrbird.febs.organizationalmanagement.entity.Guardian">
+         select name FROM t_guardian WHERE phone =#{phone}
+    </select>
+    <!-- 分页查询-->
+    <select id="findAll" resultType="cc.mrbird.febs.organizationalmanagement.entity.Guardian">
+        select * from t_guardian
+        <if test="value != null and value.length > 0">
+            where  phone =#{value}
+        </if>
+    </select>
+</mapper>
