@@ -5,13 +5,13 @@
         <!-- 添加新用户的 -->
     <insert id="addUser" parameterType="cc.mrbird.febs.systemmanagement.entity.UserT">
         INSERT INTO t_user (
-        USERNAME,PASSWORD,DEPT_ID,EMAIL,MOBILE,CREATE_TIME,MODIFY_TIME,LAST_LOGIN_TIME,
+        USERNAME,PASSWORD,DEPT_ID,EMAIL,MOBILE,STATUS,CREATE_TIME,MODIFY_TIME,LAST_LOGIN_TIME,
   SSEX,IS_TAB,THEME, AVATAR,DESCRIPTION,ORGANIZATION_CODING,REGION_CODING,NAME,QUALIFICATION,
-  SITE,CERTIFICATION_STATUS,CERTIFICATE)
+  SITE,CERTIFICATION_STATUS,CERTIFICATE,AGE,BIRTHDAY,ORGANIZATION_NAME)
   values (
-      #{username},#{password},#{deptId},#{email},#{mobile},#{createTime},#{modifyTime},#{lastLoginTime},
+      #{username},#{password},#{deptId},#{email},#{mobile},#{status},#{createTime},#{modifyTime},#{lastLoginTime},
       #{ssex},#{isTab},#{theme},#{avatar},#{description},#{organizationCoding},#{regionCoding},
-      #{name},#{qualification},#{site},#{certificationStatus},#{certificate})
+      #{name},#{qualification},#{site},#{certificationStatus},#{certificate},#{age},#{birthday},#{organizationName})
      </insert>
 
     <!-- 根据用户名进行修改 -->
@@ -22,17 +22,17 @@
             <if test="username !=null">
                 USERNAME =#{username},
             </if>
-            <if test="password != null">
-                PASSWORD  =#{password},
-            </if>
             <if test=" deptId !=null">
                 DEPT_ID =#{deptId},
             </if>
             <if test="email !=null">
                 EMAIL =#{email},
             </if>
-            <if test="createTime!=null">
-                MOBILE =#{createTime},
+            <if test="mobile!=null">
+                MOBILE =#{mobile},
+            </if>
+            <if test="status !=null ">
+                STATUS =#{status},
             </if>
             <if test="createTime != null">
                 CREATE_TIME =#{createTime},
@@ -70,19 +70,27 @@
             <if test="qualification !=null">
                 QUALIFICATION =#{qualification},
             </if>
-            <if test="site!=null">
+            <if test="site !=null">
                 SITE =#{site},
             </if>
             <if test="certificationStatus !=null ">
                 CERTIFICATION_STATUS =#{certificationStatus},
             </if>
             <if test="certificate != null">
-                CERTIFICATE =#{certificate}
+                CERTIFICATE =#{certificate},
+            </if>
+            <if test="age != null">
+                AGE =#{age},
+            </if>
+            <if test="birthday != null">
+                BIRTHDAY =#{birthday},
+            </if>
+            <if test="organizationName != null">
+                ORGANIZATION_NAME  =#{organizationName}
             </if>
         </set>
             where USERNAME =#{username}
     </update>
-
 
 
     <!-- 根据用户名删除 -->

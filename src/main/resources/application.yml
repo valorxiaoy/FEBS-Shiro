@@ -22,7 +22,7 @@ mybatis-plus:
   mapper-locations: classpath:mapper/*/*.xml
   configuration:
     jdbc-type-for-null: null
-    map-underscore-to-camel-case: true
+    map-underscore-to-camel-case: true # 开启驼峰命名
   global-config:
     banner: false
     db-config:

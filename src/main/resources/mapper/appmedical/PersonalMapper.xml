@@ -1,37 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cc.mrbird.febs.appmedical.mapper.PersonalMapper">
-    <update id="updatePhoneByKey" parameterType="cc.mrbird.febs.organizationalmanagement.entity.Staff">
-        update t_staff_table
+
+    <!-- 修改个人信息 -->
+    <update id="updatePhoneByKey" parameterType="cc.mrbird.febs.systemmanagement.entity.UserT">
+        update t_user
         <set>
-            <if test="staffName!=null">
-                staff_name =#{staffName},
+            <if test="name!=null">
+                NAME =#{name},
             </if>
-            <if test="gender != null">
-                gender =#{gender},
+            <if test="ssex != null">
+                SSEX =#{ssex},
             </if>
             <if test="birthday != null">
-                birthday =#{birthday},
+                BIRTHDAY =#{birthday},
             </if>
-            <if test="age != null">
-                age =#{age},
-            </if>
-            <if test="updateTime != null">
-                update_time =#{updateTime},
-            </if>
-            <if test=" phone !=null">
-                phone =#{phone},
-            </if>
-            <if test="subsidiaryOrgan">
-                subsidiary_organ =#{subsidiaryOrgan}
+            <if test="organizationName != null">
+                ORGANIZATION_NAME =#{organizationName}
             </if>
         </set>
-            WHERE phone =#{phone}
+            WHERE MOBILE =#{mobile}
+    </update>
+    <!-- 修改密码 -->
+    <update id="updatePwd">
+        update t_user
+        <set>
+            <if test="phone != newPwd">
+                PASSWORD =#{newPwd}
+            </if>
+
+            where MOBILE =#{phone}
+        </set>
+
     </update>
 
-    <select id="selectPhoneByKey" parameterType="java.lang.Integer"
-            resultType="cc.mrbird.febs.organizationalmanagement.entity.Staff">
-        select  staff_name,gender,birthday,age,phone,subsidiary_organ from t_staff_table where phone =#{phone}
+    <!-- 查询个人信息-->
+    <select id="selectPhoneByKey" parameterType="java.lang.String"
+            resultType="cc.mrbird.febs.systemmanagement.entity.UserT">
+        select  AVATAR,NAME,SSEX,BIRTHDAY,AGE,MOBILE,ORGANIZATION_NAME from t_user where MOBILE=#{mobile}
+    </select>
+
+    <!-- 查询个人信息是否存在 -->
+    <select id="selectUserPhoneByKey" resultType="cc.mrbird.febs.systemmanagement.entity.UserT"
+            parameterType="java.lang.String">
+        select MOBILE from  t_user where MOBILE=#{mobile}
     </select>
 
 </mapper>

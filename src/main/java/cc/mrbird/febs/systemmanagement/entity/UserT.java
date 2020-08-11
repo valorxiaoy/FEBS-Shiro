@@ -12,24 +12,51 @@ public class UserT implements Serializable {
   private  String   username;
   private  String   password;
   private  int      deptId;
-  private  String    email;
-  private  String     mobile;
-  private  int          status;
-  private  Date         createTime;
-  private  Date         modifyTime;
-  private  Date         lastLoginTime;
-  private  int          ssex;
-  private  int          isTab;
-  private  String       theme;
-  private  String       avatar;
-  private  String       description;
-  private  String       organizationCoding;
-  private  String       regionCoding;
-  private  String       name;
-  private  String       qualification;
-  private  String       site;
-  private  int          certificationStatus;
-  private  int          certificate;
+  private  String  email;
+  private  String   mobile;
+  private  int   status;
+  private  Date    createTime;
+  private  Date   modifyTime;
+  private  Date  lastLoginTime;
+  private  int     ssex;
+  private  int       isTab;
+  private  String    theme;
+  private  String  avatar;
+  private  String  description;
+  private  String  organizationCoding;
+  private  String  regionCoding;
+  private  String  name;
+  private  String  qualification;
+  private  String  site;
+  private  int     certificationStatus;
+  private  int     certificate;
+  private int age;
+  private String birthday;
+  private String organizationName;
+
+    public String getOrganizationName() {
+        return organizationName;
+    }
+
+    public void setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 
     public int getUserId() {
         return userId;

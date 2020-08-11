@@ -1,5 +1,6 @@
 package cc.mrbird.febs.systemmanagement.service.impl;
 
+import cc.mrbird.febs.organizationalmanagement.entity.AgeUtils;
 import cc.mrbird.febs.systemmanagement.entity.PageResult;
 import cc.mrbird.febs.systemmanagement.entity.UserT;
 import cc.mrbird.febs.systemmanagement.mapper.UserManagermentMapper;
@@ -9,6 +10,8 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Service
@@ -19,7 +22,11 @@ public class UserManagementServiceImpl implements UserManagementService {
 
 
     @Override
-    public void addUser(UserT user) {
+    public void addUser(UserT user) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd" );
+
+        int ageByBirth = AgeUtils.getAgeByBirth(sdf.parse(user.getBirthday()));
+        user.setAge(ageByBirth);
         user.setCreateTime(new Date());
         user.setModifyTime(new Date());
         userManagermentMapper.addUser(user);
@@ -38,7 +45,12 @@ public class UserManagementServiceImpl implements UserManagementService {
     }
 
     @Override
-    public void updateUserByKey( UserT user) {
+    public void updateUserByKey( UserT user) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd" );
+
+        int ageByBirth = AgeUtils.getAgeByBirth(sdf.parse(user.getBirthday()));
+        user.setAge(ageByBirth);
+
         user.setModifyTime(new Date());
         userManagermentMapper.updateUserByKey(user);
          return;
