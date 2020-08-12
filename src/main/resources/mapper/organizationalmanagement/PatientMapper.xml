@@ -2,8 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cc.mrbird.febs.organizationalmanagement.mapper.PatientMapper">
     <insert id="add" parameterType="cc.mrbird.febs.organizationalmanagement.entity.Patient">
-
-
           INSERT INTO t_patient (
       region,classify,name,gender,age,phone,site,diagnosis,affiliated_hospital,create_uid,create_time,update_time,update_uid,
       remark,guardian_id,area_code,face_reco,entrust_the_way)
@@ -72,6 +70,7 @@
             <if test="remark!=null">
                 remark =#{remark}
             </if>
+
         </set>
         WHERE phone =#{phone}
     </update>

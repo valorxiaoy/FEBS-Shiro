@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.appmedical.mapper.StatisticsMapper">
+
+    <!--地区和服务方式查询已服务的 -->
+    <select id="selectCertificationStatusYes" resultType="java.lang.Integer">
+        select count(id) from t_patient where region like  '%${region}%' and serve_state = 1 and entrust_the_way = #{entrustTheWay}
+    </select>
+
+    <!--地区和服务方式查询未服务的  -->
+    <select id="selectCertificationStatusNo" resultType="java.lang.Integer">
+        select count(id) from t_patient where region like  '%${region}%' and serve_state = 0 and entrust_the_way = #{entrustTheWay}
+    </select>
+
+
+    <!-- 根据地区查询以服务的总数-->
+    <select id="selectRegionYes" resultType="java.lang.Integer" parameterType="java.lang.String">
+         select count(id) from t_patient where region like  '%${region}%' and serve_state = 1
+    </select>
+
+    <!-- 根据地区查询未服务的总数 -->
+    <select id="selectRegionNo" resultType="java.lang.Integer" parameterType="java.lang.String">
+         select count(id) from t_patient where region like '%${region}%' and serve_state = 0
+    </select>
+
+
+
+
+
+
+    <!-- 根据地址模糊查询已服务的个数 -->
+    <select id="selectSiteYes" resultType="java.lang.Integer">
+          select count(id) from t_patient where site like '%${site}%' and serve_state = 1
+    </select>
+
+    <!-- 根据地址模糊查询未服务的个数 -->
+    <select id="selectSiteNo" resultType="java.lang.Integer">
+        select count(id) from t_patient where site like '%${site}%' and serve_state = 0
+    </select>
+
+    <!-- 根据地址和服务方式查询已服务的-->
+    <select id="selectSiteETWYes" resultType="java.lang.Integer">
+        select count(id) from t_patient where site like '%${site}%' and serve_state = 1 and entrust_the_way = #{entrustTheWay}
+    </select>
+
+    <!-- 根据地址和服务方式查询未服务的-->
+    <select id="selectSiteAndETWNo" resultType="java.lang.Integer">
+         select count(id) from t_patient where site like '%${site}%' and serve_state = 0 and entrust_the_way = #{entrustTheWay}
+    </select>
+
+
+</mapper>

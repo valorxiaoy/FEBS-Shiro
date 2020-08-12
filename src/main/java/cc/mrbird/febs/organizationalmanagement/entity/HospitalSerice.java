@@ -16,6 +16,16 @@ public class HospitalSerice implements Serializable {
     private int  updateUid ;
     private Date  updateTime ;
     private String  remark;
+    private String narrate;
+
+
+    public String getNarrate() {
+        return narrate;
+    }
+
+    public void setNarrate(String narrate) {
+        this.narrate = narrate;
+    }
 
     public int getId() {
         return id;

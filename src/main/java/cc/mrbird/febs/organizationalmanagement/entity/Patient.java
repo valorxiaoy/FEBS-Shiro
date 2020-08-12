@@ -14,12 +14,10 @@ public class Patient implements Serializable {
    private int   gender;
    private int      age;
    private int      phone;
-
    private int      guardianId;
    private String   areaCode;
    private String   faceReco;
    private String   entrustTheWay;
-
    private String   site;
    private String   diagnosis;
    private String   affiliatedHospital;
@@ -28,6 +26,45 @@ public class Patient implements Serializable {
    private Date     updateTime;
    private int      updateUid;
    private String   remark;
+   private int serveState;
+   private String town;
+   private String village;
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
+    }
+
+    public String getVillage() {
+        return village;
+    }
+
+    public void setVillage(String village) {
+        this.village = village;
+    }
+
+    public int getGender() {
+        return gender;
+    }
+
+    public String getEntrustTheWay() {
+        return entrustTheWay;
+    }
+
+    public void setEntrustTheWay(String entrustTheWay) {
+        this.entrustTheWay = entrustTheWay;
+    }
+
+    public int getServeState() {
+        return serveState;
+    }
+
+    public void setServeState(int serveState) {
+        this.serveState = serveState;
+    }
 
     public int getGuardianId() {
         return guardianId;

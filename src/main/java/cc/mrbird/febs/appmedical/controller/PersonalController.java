@@ -2,6 +2,7 @@ package cc.mrbird.febs.appmedical.controller;
 
 import cc.mrbird.febs.appmedical.entity.AliYun;
 import cc.mrbird.febs.appmedical.entity.Pwd;
+import cc.mrbird.febs.appmedical.entity.RedisMessageConstant;
 import cc.mrbird.febs.appmedical.entity.ValidateCodeUtils;
 import cc.mrbird.febs.appmedical.service.PersonalService;
 import cc.mrbird.febs.organizationalmanagement.entity.Staff;
@@ -12,6 +13,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import redis.clients.jedis.JedisPool;
+
 @Slf4j
 @ApiModel("个人中心")
 @RestController
@@ -20,6 +23,9 @@ public class PersonalController {
 
     @Autowired
     private PersonalService personalService;
+
+    //@Autowired
+    //private JedisPool jedisPool;
 
     @ApiOperation("通过手机号码查询个人信息")
     @GetMapping("/selectPhoneByKey/{phone}")
@@ -50,26 +56,26 @@ public class PersonalController {
             return new Result(false,"修改失败");
         }
     }
-
-   /* @ApiOperation("修改密码")
+    /*@ApiOperation("修改密码")
     @RequestMapping(value = "/updatePwd",method = RequestMethod.POST)
     public Result updatePwd(@RequestBody Pwd pwd){
-
         try {
-
-
             UserT user = personalService.selectUserPhoneByKey(pwd.getPhnoe());
             if (user == null){
                 return new Result(false,"你输入的手机号不存在");
             }
 
-
-            return new Result(false,"修改失败");
+            //从redis中夺取验证码
+            String code = jedisPool.getResource().get(pwd.getPhnoe() + RedisMessageConstant.SENDTYPE_GETPWD);
+            if (code != null && pwd.getNewPwd() != null && code.equals(pwd.getCode())){
+                    personalService.updatePwd(pwd);
+                return new Result(true,"修改成功");
+            }
+                return new Result(false,"修改失败");
         } catch (Exception e) {
             e.printStackTrace();
-            return new Result(false,"修改失败");
+                return new Result(false,"修改失败");
         }
 
-    }
-*/
+    }*/
 }

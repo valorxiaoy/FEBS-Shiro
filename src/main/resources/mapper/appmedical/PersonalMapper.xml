@@ -15,6 +15,9 @@
             <if test="birthday != null">
                 BIRTHDAY =#{birthday},
             </if>
+            <if test="age != null">
+                AGE =#{age},
+            </if>
             <if test="organizationName != null">
                 ORGANIZATION_NAME =#{organizationName}
             </if>

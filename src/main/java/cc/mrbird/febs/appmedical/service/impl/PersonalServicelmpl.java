@@ -4,7 +4,6 @@ import cc.mrbird.febs.appmedical.entity.Pwd;
 import cc.mrbird.febs.appmedical.mapper.PersonalMapper;
 import cc.mrbird.febs.appmedical.service.PersonalService;
 import cc.mrbird.febs.organizationalmanagement.entity.AgeUtils;
-import cc.mrbird.febs.organizationalmanagement.entity.Staff;
 import cc.mrbird.febs.systemmanagement.entity.UserT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +15,8 @@ import java.util.Date;
 @Service
 public class PersonalServicelmpl implements PersonalService {
 
-        @Autowired
-        private PersonalMapper personalMapper;
+    @Autowired
+     private PersonalMapper personalMapper;
 
 
 

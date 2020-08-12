@@ -4,9 +4,9 @@
 
     <insert id="add" parameterType="cc.mrbird.febs.organizationalmanagement.entity.HospitalSerice">
         INSERT INTO t_hospital_serice(
-          parenting_way,parenting_name,serice_serial,cost,state,create_uid,create_time,update_uid,update_time,remark)
+          parenting_way,parenting_name,cost,state,create_uid,create_time,update_uid,update_time,remark,narrate,serice_serial)
           values (
-        #{parentingWay},#{parentingName},#{sericeSerial},#{cost},#{state},#{createUid},#{createTime},#{updateUid},#{updateTime},#{remark})
+        #{parentingWay},#{parentingName},#{cost},#{state},#{createUid},#{createTime},#{updateUid},#{updateTime},#{remark},#{narrate},#{sericeSerial})
     </insert>
 
 
@@ -21,9 +21,7 @@
             <if test="parentingName != null">
                 parenting_name =#{parentingName},
             </if>
-            <if test="sericeSerial != null">
-                serice_serial =#{sericeSerial},
-            </if>
+
             <if test="cost!=null">
                 cost =#{cost},
             </if>
@@ -43,7 +41,10 @@
                 update_time =#{updateTime},
             </if>
             <if test="remark != null">
-                remark =#{remark}
+                remark =#{remark},
+            </if>
+            <if test="narrate != null">
+                narrate =#{narrate}
             </if>
                 WHERE  serice_serial =#{sericeSerial}
         </set>
