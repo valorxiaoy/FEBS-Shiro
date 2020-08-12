@@ -49,7 +49,7 @@
         GROUP_CONCAT(r.ROLE_NAME) roleName
         FROM
         t_user u
-        LEFT JOIN t_dept d ON (u.dept_id = d.id)
+        LEFT JOIN t_dept d ON (u.dept_id = d.dept_id)
         LEFT JOIN t_user_role ur ON (u.user_id = ur.user_id)
         LEFT JOIN t_role r ON r.role_id = ur.role_id
         WHERE 1 = 1
@@ -57,7 +57,7 @@
             AND u.username = #{user.username}
         </if>
         <if test="user.deptId != null and user.deptId != ''">
-            AND d.id = #{user.deptId}
+            AND d.dept_id = #{user.deptId}
         </if>
         <if test="user.sex != null and user.sex != ''">
             AND u.ssex = #{user.sex}
