@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.systemmanagement.mapper.MenuMapper">
+
+    <insert id="addMenu">
+        INSERT INTO t_menu (
+    PARENT_ID,MENU_NAME,URL,PERMS,ICON,TYPE,ORDER_NUM,CREATE_TIME,MODIFYT_IME) values (
+        #{parentId},#{menuName},#{url},#{perms},#{icon},#{type},#{orderNum},#{createTime},#{modifyTime})
+    </insert>
+
+    <update id="updateIdByKey">
+        update t_menu
+        <set>
+            <if test="parentId != null">
+                PARENT_ID =#{parentId},
+            </if>
+            <if test="menuName!=null">
+                MENU_NAME =#{menuName},
+            </if>
+            <if test="url != null">
+                URL =#{url},
+            </if>
+            <if test="perms != null">
+                PERMS =#{perms},
+            </if>
+            <if test="icon != null">
+                ICON =#{icon},
+            </if>
+            <if test="orderNum != null">
+                ORDER_NUM =#{orderNum},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME =#{createTime},
+            </if>
+            <if test="modifytIme">
+                MODIFYT_IME =#{modifytIme}
+            </if>
+        </set>
+            where MENU_ID =#{menuId}
+    </update>
+
+    <delete id="deleteIdByKey">
+        delete from t_menu where MENU_ID =#{menuId}
+    </delete>
+
+    <select id="selectIdByKey" resultType="cc.mrbird.febs.systemmanagement.entity.Menu">
+        select * from t_menu where MENU_ID=#{menuId}
+    </select>
+</mapper>
