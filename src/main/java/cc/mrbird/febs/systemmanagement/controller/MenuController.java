@@ -48,7 +48,7 @@ public class MenuController {
     }
 
     @ApiOperation("修改菜单项")
-    @RequestMapping(value = "/addMenu",method = RequestMethod.POST)
+    @RequestMapping(value = "/updateIdByKey",method = RequestMethod.POST)
     public Result updateIdByKey(@RequestBody Menu menu){
         try {
             menuService.updateIdByKey(menu);
