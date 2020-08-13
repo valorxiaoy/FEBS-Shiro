@@ -2,7 +2,7 @@ package cc.mrbird.febs.systemmanagement.entity;
 
 import java.util.Date;
 
-public class Menu {
+public class Menus {
 
     private int     menuId;
     private int     parentId;

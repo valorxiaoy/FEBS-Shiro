@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cc.mrbird.febs.systemmanagement.mapper.MenuMapper">
+<mapper namespace="cc.mrbird.febs.systemmanagement.mapper.MenusMapper">
 
     <insert id="addMenu">
         INSERT INTO t_menu (
@@ -43,7 +43,7 @@
         delete from t_menu where MENU_ID =#{menuId}
     </delete>
 
-    <select id="selectIdByKey" resultType="cc.mrbird.febs.systemmanagement.entity.Menu">
+    <select id="selectIdByKey" resultType="cc.mrbird.febs.systemmanagement.entity.Menus">
         select * from t_menu where MENU_ID=#{menuId}
     </select>
 </mapper>

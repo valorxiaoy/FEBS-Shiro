@@ -1,20 +1,21 @@
 package cc.mrbird.febs.systemmanagement.service.impl;
 
-import cc.mrbird.febs.systemmanagement.entity.Menu;
-import cc.mrbird.febs.systemmanagement.mapper.MenuMapper;
-import cc.mrbird.febs.systemmanagement.service.MenuService;
+import cc.mrbird.febs.systemmanagement.entity.Menus;
+
+import cc.mrbird.febs.systemmanagement.mapper.MenusMapper;
+import cc.mrbird.febs.systemmanagement.service.MenusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MenuServiceImpl implements MenuService {
+public class MenusServiceImpl implements MenusService {
 
     @Autowired
-    private MenuMapper menuMapper;
+    private MenusMapper menuMapper;
 
 
     @Override
-    public Menu selectIdByKey(Integer menuId) {
+    public Menus selectIdByKey(Integer menuId) {
         return menuMapper.selectIdByKey(menuId);
     }
 
@@ -24,12 +25,12 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public void addMenu(Menu menu) {
+    public void addMenu(Menus menu) {
         menuMapper.addMenu(menu);
     }
 
     @Override
-    public void updateIdByKey(Menu menu) {
+    public void updateIdByKey(Menus menu) {
         menuMapper.updateIdByKey(menu);
     }
 }
