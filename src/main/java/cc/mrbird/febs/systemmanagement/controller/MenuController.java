@@ -47,7 +47,7 @@ public class MenuController {
         }
     }
 
-    @ApiOperation("添加菜单项")
+    @ApiOperation("修改菜单项")
     @RequestMapping(value = "/addMenu",method = RequestMethod.POST)
     public Result updateIdByKey(@RequestBody Menu menu){
         try {
