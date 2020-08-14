@@ -5,7 +5,7 @@
         INSERT INTO t_role (
             ROLE_ID,
             ROLE_NAME,
-            REMAKE,
+            REMARK,
             CREATE_TIME,
             MODIFY_TIME
         ) values (
@@ -13,7 +13,7 @@
             #{roleName},
             #{remake},
             #{createTime},
-            #{modifyTimee})
+            #{modifyTime})
 
     </insert>
     <update id="updateByKey" parameterType="cc.mrbird.febs.systemmanagement.entity.RoleT">
@@ -26,7 +26,7 @@
                 ROLE_NAME=#{roleName},
             </if>
             <if test="remake!=null">
-                REMAKE =#{remake},
+                REMARK =#{remake},
             </if>
             <if test="createTime!=null">
                 CREATE_TIME =#{createTime},

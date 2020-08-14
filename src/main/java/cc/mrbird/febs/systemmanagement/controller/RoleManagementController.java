@@ -15,6 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+
 
 @ApiModel("角色设置")
 @Slf4j
@@ -35,9 +37,11 @@ public class RoleManagementController {
         return new Result(false,"查询失败");
     }
     @ApiOperation("新增")
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public Result addRole(@RequestBody  RoleT role){
-       try {
+    @RequestMapping(value = "/add")
+    @CrossOrigin("http://localhost:8080")
+    public Result addRole(RoleT role){
+
+           try {
            RoleT roleByKey = roleManagementService.getRoleByKey(role.getRoleId());
            if (roleByKey != null){
              return  new Result(false,"对不起你添加的角色id以存在");
