@@ -28,7 +28,7 @@ public class RoleManagementServiceImpl implements RoleManagementService {
     @Override
     public void addRole(RoleT role) {
         role.setCreateTime(new Date());
-        role.setUpdateTime(new Date());
+        role.setModifyTime(new Date());
         roleManagementMapper.addRole(role);
         return;
     }
@@ -52,7 +52,7 @@ public class RoleManagementServiceImpl implements RoleManagementService {
 
     @Override
     public void updateByKey(RoleT role) {
-        role.setUpdateTime(new Date());
+        role.setModifyTime(new Date());
         roleManagementMapper.updateByKey(role);
         return;
     }

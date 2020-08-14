@@ -3,69 +3,53 @@
 <mapper namespace="cc.mrbird.febs.systemmanagement.mapper.RoleManagementMapper">
     <insert id="addRole" parameterType="cc.mrbird.febs.systemmanagement.entity.RoleT">
         INSERT INTO t_role (
-        id,role_name,create_uid,create_time,update_uid,update_time,remark,role_id,name,gender,phone,site,qualification,username
-        )
-        VALUES (#{id},#{roleName},#{createUid},#{createTime},#{updateUid},#{updateTime},#{remark},#{roleId},#{name},
-        #{gender},#{phone},#{site},#{qualification},#{username})
+            ROLE_ID,
+            ROLE_NAME,
+            REMAKE,
+            CREATE_TIME,
+            MODIFY_TIME
+        ) values (
+            #{roleId},
+            #{roleName},
+            #{remake},
+            #{createTime},
+            #{modifyTimee})
 
     </insert>
     <update id="updateByKey" parameterType="cc.mrbird.febs.systemmanagement.entity.RoleT">
         update t_role
         <set>
-
-            <if test="roleName != null">
-                role_name  =#{roleName},
+            <if test="roleId!=null">
+                ROLE_ID=#{roleId},
             </if>
-            <if test=" createUid != null">
-                create_uid =#{createUid},
+            <if test="roleName!=null">
+                ROLE_NAME=#{roleName},
             </if>
-            <if test="createTime != null">
-                create_time =#{createTime},
+            <if test="remake!=null">
+                REMAKE =#{remake},
             </if>
-            <if test="updateUid !=null">
-                update_uid =#{updateUid},
+            <if test="createTime!=null">
+                CREATE_TIME =#{createTime},
             </if>
-            <if test="updateTime !=null">
-                update_time =#{updateTime},
-            </if>
-            <if test="remark != null">
-                remark =#{remark},
-            </if>
-
-            <if test="name != null">
-                name =#{name},
-            </if>
-            <if test="gender !=null">
-                gender =#{gender},
-            </if>
-            <if test="phone !=null">
-                phone =#{phone},
-            </if>
-            <if test="site !=null">
-                site =#{site},
-            </if>
-            <if test="qualification!=null">
-                qualification =#{qualification},
-            </if>
-            <if test="username!=null">
-                username =#{username}
+            <if test="modifyTime！=null">
+                MODIFY_TIME =#{modifyTime}
             </if>
         </set>
              WHERE role_id =#{roleId}
     </update>
     <update id="updateQualification">
         update  t_role
-        set status = 1 where role_id =#{roleId}
+        set status = 1 where ROLE_ID =#{roleId}
     </update>
 
 
     <delete id="deleteByKey" parameterType="java.lang.Integer">
-        delete from  t_role where role_id =#{roleId}
+        delete from  t_role where ROLE_ID =#{roleId}
     </delete>
 
 
     <select id="getRoleByKey" parameterType="int" resultType="cc.mrbird.febs.systemmanagement.entity.RoleT">
-            select  * from  t_role where role_id =#{roleId}
+            select  * from  t_role where ROLE_ID =#{roleId}
     </select>
 
     <select id="findAll" resultType="cc.mrbird.febs.systemmanagement.entity.RoleT">
